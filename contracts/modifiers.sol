@@ -14,15 +14,15 @@ struct Account{
 
 
 
-//declaring an array "people" of structure "person"
+//declaring an array "account" of structure "Account"
 Account[] public accounts;
 
-//initializing and storing person as and individual under "people" array of structures
+//initializing and storing Account as and new_account under "acoounts" array of structures
 function create(address wallet_adrress, int balance) external returns (Account memory) {
      /**
-      *A function for initializes and stores struct elements in the "people" array.
+      *A function for initializes and stores struct elements in the "account" array.
       *The function takes in the data to be grouped under the structure,
-      *initializes the struct element and stores it in the "people" array.
+      *initializes the struct element and stores it in the "accounts" array.
       **/
 
     Account memory new_account = Account({walletAdrress:wallet_adrress, balance:balance, status:"active"});
