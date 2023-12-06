@@ -39,7 +39,7 @@ function PauseTransaction(bool _paused) external{
 }
 
 modifier checkStatus(){
-  require(!status, "Transaction status has been set to pause");
+  require(!status, "Transaction status has been set to paused");
    _;
 }
 
@@ -60,6 +60,6 @@ function debit(uint account_index, int amount) external checkStatus returns(stri
   require(accounts.length > account_index, "account does not exist");
   accounts[account_index].balance -= amount;
 
-  return("credited");
+  return("debited");
 }
 }
