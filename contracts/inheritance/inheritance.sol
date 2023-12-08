@@ -30,10 +30,12 @@ contract Users{
   //declaring an array of User struct
   User[] users;
 
-  function claimOwnership(address new_owner) external  returns(string memory){
+  function claimOwnership(address new_owner, address old_owner) external  returns(string memory){
     /**
      *A function created to claim a the written contract
      **/
+     
+      require(_owner == old_owner, "invalid address for the current owner");
       _owner = new_owner;
       return ("contract ownership claimed successfully");
       }
