@@ -12,24 +12,27 @@ contract CertificateNFT is ERC721URIStorage{
         console.log("Contract deployer:", msg.sender);
     }
     address contractDeployer;
+    string CertificateMintStatus;
 
-    ///A function that updates a state variable
-    function updateContractDeployer(address _address)external returns (string memory){
-        contractDeployer = _address;
-        console.log("ContractDeployer variable value:" , contractDeployer);
-        return("address updated successfully");
+    ///A function for updating the state variable "CertificateMintStatus" for test purpose
+    function UpdateMintStatus(string memory _status) public{
+        CertificateMintStatus = _status;
     }
 
+    ///A function that updates a state variable
+    function updateContractDeployer(address _address)external{
+        contractDeployer = _address;
+    }
 
     ///A function created for minting certificate as NFT
     function mintCertificate(
         address _to,
         uint _tokenId,
         string calldata _uri
-    )external returns (string memory){
+    )external {
         _mint(_to, _tokenId);
         _setTokenURI(_tokenId, _uri);
-        return("nft token minted successfully");
+        UpdateMintStatus("Success"); 
     }
 
     ///A function created for transfering certificate ownership
@@ -48,5 +51,16 @@ contract CertificateNFT is ERC721URIStorage{
     ) external view{
         ownerOf(_tokenId);
     }
-    
+
+     ///A function for returning the state variable "contractDeployer" for test purpose
+    function viewContractDeployer() external view returns(address){
+        return(contractDeployer);
+    }
+
+    ///A function for returning the state variable "CertificateMintStatus" for test purpose
+    function GetMintStatus() external view returns(string memory status){
+        status = CertificateMintStatus;
+        return(status);
+    }
+   
 }
